@@ -1,0 +1,50 @@
+{
+  "name": "automated-kb-sync-agent-skill",
+  "description": "Agentic Knowledge Base Sync Skill. Monitors multi-source content revisions (Notion/Slack/PDF docs), extracts clean Q&A pairs, formats metadata, and generates vectorized ingestion schemas.",
+  "version": "1.0.0",
+  "author": "alphaparkinc",
+  "inputs": {
+    "source_documents": {
+      "type": "array",
+      "description": "List of raw document files or integration entries to scan.",
+      "items": {
+        "properties": {
+          "source_id": { "type": "string" },
+          "source_type": { "type": "string", "enum": ["notion", "slack", "markdown", "pdf"] },
+          "content": { "type": "string" }
+        },
+        "required": ["source_id", "source_type", "content"]
+      }
+    },
+    "chunk_size": {
+      "type": "integer",
+      "default": 500
+    }
+  },
+  "outputs": {
+    "extracted_qa_pairs": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "question": { "type": "string" },
+          "answer": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "source_id": { "type": "string" },
+              "confidence_score": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "ingestion_ready_chunks": {
+      "type": "array",
+      "items": {
+        "text": { "type": "string" },
+        "vector_meta": { "type": "object" }
+      }
+    }
+  },
+  "prompt": "You are a Knowledge Base Sync agent. Your objective is to read raw, unstructured meeting notes, Notion pages, and Slack digests, clean up conversational filler, and structure them into high-quality QA pairs and clean chunk segments ready for indexing into vector databases (Pinecone/Qdrant)."
+}
