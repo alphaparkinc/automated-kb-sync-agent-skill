@@ -26,10 +26,10 @@ class KBSyncClient:
                 continue
             
             # Simple heuristic matching Q: or Question:
-            if re.match(r'^(Q:|Question:|问:|问题:)', line, re.IGNORECASE):
-                current_q = re.sub(r'^(Q:|Question:|问:|问题:)\s*', '', line, flags=re.IGNORECASE)
-            elif re.match(r'^(A:|Answer:|答:|回答:)', line, re.IGNORECASE) and current_q:
-                ans = re.sub(r'^(A:|Answer:|答:|回答:)\s*', '', line, flags=re.IGNORECASE)
+            if re.match(r'^(Q:|Question:|Que:|QUE:)', line, re.IGNORECASE):
+                current_q = re.sub(r'^(Q:|Question:|Que:|QUE:)\s*', '', line, flags=re.IGNORECASE)
+            elif re.match(r'^(A:|Answer:|:|:)', line, re.IGNORECASE) and current_q:
+                ans = re.sub(r'^(A:|Answer:|:|:)\s*', '', line, flags=re.IGNORECASE)
                 qa_pairs.append({
                     "question": current_q,
                     "answer": ans,
