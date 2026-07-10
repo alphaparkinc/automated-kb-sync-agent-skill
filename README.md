@@ -1,4 +1,4 @@
-# automated-kb-sync-agent-skill
+# genpark-automated-kb-sync-agent-skill
 
 > **GenPark AI Agent Skill** -- # Automated KB Sync Agent Skill
 
