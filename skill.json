@@ -1,5 +1,5 @@
 {
-  "name": "automated-kb-sync-agent-skill",
+  "name": "genpark-automated-kb-sync-agent-skill",
   "description": "GenPark AI Agent Skill - Agentic Knowledge Base Sync Skill. Monitors multi-source content revisions (Notion/Slack/PDF docs), extracts clean Q&A pairs, formats metadata, and generates vectorized ingestion schemas.",
   "version": "1.0.0",
   "author": "genpark",
